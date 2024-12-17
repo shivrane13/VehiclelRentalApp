@@ -1,0 +1,39 @@
+﻿@model VehiclelRentalApp.Models.VehicalBookingViewModel
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <!-- Vehicle Details Section -->
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" alt="Vehicle Image" class="img-fluid rounded">
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.Make</h2>
+            <p><strong>Model:</strong> @Model.Model</p>
+            <p><strong>Fuel Type:</strong> @Model.FuelType</p>
+            <p><strong>Registration Number:</strong>@Model.RegistrationNumber </p>
+            <p><strong>Capacity:</strong> @Model.Capacity</p>
+            <p><strong>Rental Price Per Day:</strong> @Model.DailyRate</p>
+            <div class="card-footer">
+                <form asp-controller="Booking" asp-action="CreateBooking" asp-route-id="@Model.Id" >
+                    <input type="hidden" asp-for="DailyRate" value="@Model.DailyRate"  />
+                    <div class="mb-3">
+                        <label for="rentalStartDate" class="form-label" asp-for="StartDate" >Rental Start Date</label>
+                        <input type="date" class="form-control" asp-for="StartDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rentalEndDate" class="form-label">Rental End Date</label>
+                        <input type="date" class="form-control" asp-for="EndDate" id="rentalEndDate" required>
+                    </div>
+                    <div>
+                        <p><strong>Total Price:</strong>3000</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Book Now</Button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

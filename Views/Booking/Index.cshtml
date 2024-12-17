@@ -1,0 +1,45 @@
+﻿@model List<VehiclelRentalApp.Models.RentalBooking>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Vehicle</th>
+            <th>Registration Number</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Total Cost</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="bookingList">
+        <!-- Example Rows -->
+        @foreach(var booking in Model){
+        <tr>
+            <td>@booking.Id</td>
+            <td>@booking.Vehicle.Model</td>
+            <td>@booking.Vehicle.RegistrationNumber</td>
+            <td>@booking.StartDate</td>
+            <td>@booking.EndDate</td>
+            @{
+                    if (booking.Status == "CONFORM"){
+                        <td><span class="badge bg-success">@booking.Status</span></td>
+                    } else {
+                        <td><span class="badge bg-warning">@booking.Status</span></td>
+                    }
+            }
+            
+            <td>@booking.TotalCost</td>
+            <td>
+                <form asp-action="Delete" asp-controller="Booking" asp-route-id="@booking.Id" >
+                    <button class="btn btn-sm btn-danger">Cancel</button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

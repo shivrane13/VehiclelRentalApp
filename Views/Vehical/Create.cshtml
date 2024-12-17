@@ -1,0 +1,42 @@
+﻿@model VehiclelRentalApp.Models.Vehicle
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create Vehical</h1>
+
+
+
+<form class="form-control" method="POST" asp-action="Create" enctype="multipart/form-data">
+    <label asp-for="Make">Make:</label>
+    <input class="form-control" type="text" asp-for="Make"  placeholder="Enter vehicle make (e.g., Toyota)" required>
+
+    <label for="model">Model:</label>
+    <input type="text" class="form-control" asp-for="Model" placeholder="Enter vehicle model (e.g., Corolla)" required>
+
+    <label for="registrationNumber">Registration Number:</label>
+    <input type="text" class="form-control" asp-for="RegistrationNumber" placeholder="Enter registration number" required>
+
+    <label for="capacity">Capacity:</label>
+    <input type="number" class="form-control" asp-for="Capacity" placeholder="Enter seating capacity" required min="1">
+
+    <label for="fuelType">Fuel Type:</label>
+    <select class="form-control" asp-for="FuelType" required>
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Electric">Electric</option>
+        <option value="Hybrid">Hybrid</option>
+    </select>
+
+    <label for="dailyRate">Daily Rate:</label>
+    <input class="form-control" type="number" asp-for="DailyRate" placeholder="Enter daily rate" required step="0.01" min="0">
+
+    <label  for="hourlyRate">Hourly Rate:</label>
+    <input class="form-control" type="number" asp-for="HourlyRate" placeholder="Enter hourly rate" required step="0.01" min="0">
+
+     <label for="imageUpload">Upload Image</label> 
+     <input type="file" class="form-control" id="imageUpload" asp-for="ImageFile" />
+
+    <button class="form-control" type="submit">Add Vehicle</button>
+</form>
